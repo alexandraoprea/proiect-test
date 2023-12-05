@@ -5,3 +5,13 @@
 .content-page-ana {
     color: white;
 }
+
+.content {
+    color: white;
+}
+
+.form-container {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+}

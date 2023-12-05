@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,19 @@ Route::middleware('auth')->group(function () {
 Route::get('/products', function () {
     return view('products');
 })->name('products');
+
+Route::post('/products', [ProductController::class, 'store'])->name('save-products');
+
+Route::get('button1', function () {
+    return view('button1');
+});
+
+Route::get('button2', function () {
+    return view('button2');
+});
+
+Route::get('button3', function () {
+    return view('button3');
+});
 
 require __DIR__.'/auth.php';
