@@ -8,5 +8,6 @@
         <a href="/button1" class="btn btn-danger">Button1</a>
         <a href="/button2" class="btn btn-primary">Button2</a>
         <a href="/button3"  class="btn btn-secondary">Button3</a>
+        <a href="/button4"  class="btn btn-secondary">Button4</a>
     </div>
 </x-app-layout>

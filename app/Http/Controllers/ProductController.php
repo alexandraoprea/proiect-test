@@ -41,4 +41,13 @@ class ProductController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+
+    public function index()
+    {
+        $products = Product::all();
+        return view('button2', [
+            'products' => $products
+        ]);
+    }
 }
