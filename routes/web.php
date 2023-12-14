@@ -42,13 +42,6 @@ Route::get('button1', function () {
     return view('button1');
 });
 
-Route::get('button2', function () {
-    $products = Product::all();
-    return view('button2', [
-        'products' => $products
-    ]);
-});
-
 Route::get('button22', [ProductController::class, 'index']);
 
 Route::get('button3', function () {
@@ -59,6 +52,6 @@ Route::get('button4', function () {
     return view('button4');
 });
 
-Route::get('button22', [ProductController::class, 'index']);
+Route::get('button2', [ProductController::class, 'index']);
 
 require __DIR__.'/auth.php';

@@ -19,6 +19,7 @@ class GuestsSeeder extends Seeder
                 'confirmation' => "Da",
                 'adults_number' => rand(1, 3),
                 'kids_number' => rand(0, 2),
+                'image1' => '/images/catel.jpg',
                 'need_accommodation' => rand(0, 1) == 1,
             ]);
         }

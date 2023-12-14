@@ -16,6 +16,7 @@ class Product extends Model
         'expired_at',
         'price',
         'quantity',
-        'type'
+        'type',
+        'image'
     ];
 }

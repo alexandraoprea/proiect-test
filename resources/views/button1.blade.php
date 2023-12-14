@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="form-container">
-        <form method="POST" action="{{ route('save-products') }}">
+        <form method="POST" action="{{ route('save-products') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Name -->
@@ -52,6 +52,11 @@
                     <option value="type2">Type 2 </option>
                 </select>
                 <x-input-error :messages="$errors->get('type')" class="mt-2" />
+            </div>
+
+            <div>
+                <x-input-label for="image" :value="__('Image')" />
+                <input name="image" type="file"></input>
             </div>
 
             <div>

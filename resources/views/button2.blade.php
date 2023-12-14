@@ -5,29 +5,44 @@
         </h2>
     </x-slot>
     <div>
-    <table class="table-auto" style="color:white">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Need accommodation</th>
-      <th>Expired At</th>
-      <th>Price</th>
-      <th>Quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($products as $product)
+      Filter: 
+      <a href="/button2?kids_number_min=2&kids_number_max=6" class="bg-blue-500 
+      hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+       Doar invitatii care au nevoie de cazare
+      </a>
+    </div>
+    <div>
+      @if ($products->count() === 0) 
+      <div> NU AVEM PRODUSE </div>
+      @else 
+        <table class="table-auto" style="color:white">
+        <thead>
         <tr>
-            <td>{{ $product->name }}</td>
-            <td>{{ $product->description }} </td>
-            <td>{{ $product->need_accommodation }} </td>
-            <td>{{ $product->expired_at }} </td>
-            <td>{{ $product->price }} </td>
-            <td>{{ $product->quantity }} </td>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Need accommodation</th>
+          <th>Expired At</th>
+          <th>Price</th>
+          <th>Quantity</th>
         </tr>
-    @endforeach
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+        @foreach($products as $product)
+            <tr>
+                <td> 
+                <img class="product-image" src="{{ asset($product->image) }}" />  
+              </td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->description }} </td>
+                <td>{{ $product->need_accommodation }} </td>
+                <td>{{ $product->expired_at }} </td>
+                <td>{{ $product->price }} </td>
+                <td>{{ $product->quantity }} </td>
+            </tr>
+        @endforeach
+      </tbody>
+    </table>
+    @endif
     </div>
 </x-app-layout>

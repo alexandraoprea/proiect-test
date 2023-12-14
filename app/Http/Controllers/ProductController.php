@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -24,18 +25,27 @@ class ProductController extends Controller
             'expired_at' => ['required', 'date'],
             'price' => ['required', 'numeric', 'min:0'],
             'quantity' => ['required', 'integer', 'min:0'],
-            'type' => ['required', 'string']
+            'type' => ['required', 'string'],
+            'image' => ['nullable', 'file']
         ]);
-    
-
+        
+        $imagePath = null; 
+        
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $imagePath = 'images/' . $file->getClientOriginalName(); // New path in the public directory
+            Storage::put($imagePath, file_get_contents($file));
+        }
+        
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'need_accommodation' => $request->need_accommodation,
+            'need_accommodation' => $request->need_accommodation ?? false,
             'expired_at' => $request->expired_at,
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'type' => $request->type
+            'type' => $request->type,
+            'image' => $imagePath 
         ]);
 
 
@@ -45,7 +55,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all();
+        if (isset($_GET["need_acccommodation"])) {
+            $products = Product::where('need_accommodation', '=', 1)
+            ->get();
+        } else {
+            $products = Product::all();
+        }
+       
         return view('button2', [
             'products' => $products
         ]);
