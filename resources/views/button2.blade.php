@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div>
-      Filter: 
+      Filter:
       <a href="/button2?kids_number_min=2&kids_number_max=6" class="bg-blue-500 
       hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
        Doar invitatii care au nevoie de cazare
@@ -25,9 +25,13 @@
           <th>Expired At</th>
           <th>Price</th>
           <th>Quantity</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
+        @if (session('added'))
+        <div> Produsul a fost adaugat cu succes in cos</div> 
+        @endif
         @foreach($products as $product)
             <tr>
                 <td> 
@@ -39,6 +43,15 @@
                 <td>{{ $product->expired_at }} </td>
                 <td>{{ $product->price }} </td>
                 <td>{{ $product->quantity }} </td>
+                <td>
+                  @if ($product->quantity >= 1)
+                  <a href="/cart/{{$product->id}}">
+                    Adauga in cos
+                  </a>
+                  @else
+                    <span>Out of stock</span>
+                  @endif
+                </td>
             </tr>
         @endforeach
       </tbody>

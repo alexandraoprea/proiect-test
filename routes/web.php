@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,5 +55,12 @@ Route::get('button4', function () {
 });
 
 Route::get('button2', [ProductController::class, 'index']);
+
+Route::get('/cart/{productId}', [CartController::class, 'store']);
+Route::get('/view-cart', [CartController::class, 'show'])->name('view-cart');
+Route::get('/increase-quantity/{productId}', [CartController::class, 'increase']);
+Route::get('/decrease-quantity/{productId}', [CartController::class, 'decrease']);
+Route::get('/checkout', [CartController::class, 'checkout']);
+Route::get('/view-orders', [OrderController::class, 'index'])->name('view-orders');
 
 require __DIR__.'/auth.php';

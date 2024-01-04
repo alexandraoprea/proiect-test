@@ -42,4 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function cartPrice()
+    {
+        $cartPrice = 0;
+        $carts = Cart::where('user_id', '=', $this->id)->get();
+
+        foreach ($carts as $cart) {
+            $cartPrice = $cartPrice + ($cart->product->price * $cart->quantity);
+        }
+
+        return $cartPrice;
+    }
 }
