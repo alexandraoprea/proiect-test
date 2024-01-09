@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\GuestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,5 +64,8 @@ Route::get('/increase-quantity/{productId}', [CartController::class, 'increase']
 Route::get('/decrease-quantity/{productId}', [CartController::class, 'decrease']);
 Route::get('/checkout', [CartController::class, 'checkout']);
 Route::get('/view-orders', [OrderController::class, 'index'])->name('view-orders');
+
+Route::post('/guest-confirmation', [GuestController::class, 'store'])->name('guest-confirmation');
+Route::get('/confirmations', [GuestController::class, 'index'])->name('confirmations');
 
 require __DIR__.'/auth.php';
